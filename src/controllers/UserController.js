@@ -1,5 +1,4 @@
 const users = require('../mocks/users');
-
 class UserController {
   listUsers(request, response){
     response.writeHead(200, { 
