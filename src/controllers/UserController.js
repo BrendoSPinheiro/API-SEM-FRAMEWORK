@@ -1,6 +1,6 @@
 const users = require('../mocks/users');
 class UserController {
-  listUsers(request, response){
+  listUsers(request, response) {
     const { order } = request.query;
 
     const sortedUsers = users.sort((a, b) => {
@@ -15,6 +15,13 @@ class UserController {
       'Content-Type': 'application/json',
     });
     response.end(JSON.stringify(sortedUsers));
+  }
+
+  getUserById(request, response) {
+    response.writeHead(200, { 
+      'Content-Type': 'application/json',
+    });
+    response.end(JSON.stringify({ ok: true }));
   }
 }
 
