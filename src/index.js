@@ -7,22 +7,21 @@ const routes = require('./routes');
 const server = http.createServer((request, response) => {
   const { pathname, query } = url.parse(request.url, true);
 
-  console.log({ pathname, query });
-
-
-  console.log(`Request Method: ${request.method} | Endpoint: ${request.url}`);
+  console.log(`Request Method: ${request.method} | Endpoint: ${pathname}`);
 
   const route = routes.find((route) => (
-    route.endpoint === request.url && route.method === request.method
+    route.endpoint === pathname && route.method === request.method
   ));
 
   if (route) {
+    request.query = query;
+
     route.handler(request, response);
   } else {
     response.writeHead(404, { 
       'Content-Type': 'text/html', 
     });
-    response.end(`Cannot ${request.method} ${request.url}`);
+    response.end(`Cannot ${request.method} ${pathname}`);
   }
   
 });
