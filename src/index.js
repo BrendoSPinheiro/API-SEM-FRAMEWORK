@@ -9,8 +9,14 @@ const server = http.createServer((request, response) => {
 
   console.log(`Request Method: ${request.method} | Endpoint: ${pathname}`);
 
+  let endpoint = pathname;
+
+  const splitEndpoint = endpoint.split('/').filter(Boolean);
+
+  console.log(splitEndpoint);
+
   const route = routes.find((route) => (
-    route.endpoint === pathname && route.method === request.method
+    route.endpoint === endpoint && route.method === request.method
   ));
 
   if (route) {
