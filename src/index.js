@@ -11,13 +11,15 @@ const server = http.createServer((request, response) => {
       'Content-Type': 'application/json', 
     });
     response.end(JSON.stringify(users));
+  } else {
+    response.writeHead(404, { 
+      'Content-Type': 'text/html', 
+    });
+    response.end(`Cannot ${request.method} ${request.url}`);
   }
 
   // Escrevendo informações no cabeçalho
-  // response.writeHead(200, { 
-  //   'Content-Type': 'text/html', 
-  // });
-  // response.end('<h1>Ola Mundo!</h1>');
+  
 });
 
 server.listen(3001, () => {
