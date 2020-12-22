@@ -10,7 +10,7 @@ const server = http.createServer((request, response) => {
     response.writeHead(200, { 
       'Content-Type': 'application/json', 
     });
-    response.end('<h1>Ola Mundo!</h1>');
+    response.end(JSON.stringify(users));
   }
 
   // Escrevendo informações no cabeçalho
