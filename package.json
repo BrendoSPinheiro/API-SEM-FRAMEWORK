@@ -1,0 +1,14 @@
+{
+  "name": "API-SEM-FRAMEWORK",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/BrendoSPinheiro/API-SEM-FRAMEWORK.git",
+  "author": "Brendo Souza Pinheiro <brendo.spinheiro@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
