@@ -5,6 +5,11 @@ const routes = require('./routes');
 
 // Criando servidor HTTP
 const server = http.createServer((request, response) => {
+  const { pathname, query } = url.parse(request.url, true);
+
+  console.log({ pathname, query });
+
+
   console.log(`Request Method: ${request.method} | Endpoint: ${request.url}`);
 
   const route = routes.find((route) => (
