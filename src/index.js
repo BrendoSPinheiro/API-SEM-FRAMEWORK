@@ -1,16 +1,13 @@
 const http = require('http');
 
-const users = require('./mocks/users');
+const UserController = require('./controllers/UserController');
 
 // Criando servidor HTTP
 const server = http.createServer((request, response) => {
   console.log(`Request Method: ${request.method} | Endpoint: ${request.url}`);
 
   if(request.url === '/users' && request.method === 'GET'){
-    response.writeHead(200, { 
-      'Content-Type': 'application/json', 
-    });
-    response.end(JSON.stringify(users));
+    UserController.listUsers(request, response);
   } else {
     response.writeHead(404, { 
       'Content-Type': 'text/html', 
