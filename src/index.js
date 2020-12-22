@@ -10,10 +10,14 @@ const server = http.createServer((request, response) => {
   console.log(`Request Method: ${request.method} | Endpoint: ${pathname}`);
 
   let endpoint = pathname;
+  let id = null;
 
   const splitEndpoint = endpoint.split('/').filter(Boolean);
 
-  console.log(splitEndpoint);
+  if(splitEndpoint.length > 1) {
+    endpoint = `/${splitEndpoint[0]}/:id`;
+    id = splitEndpoint[1];
+  }
 
   const route = routes.find((route) => (
     route.endpoint === endpoint && route.method === request.method
@@ -21,6 +25,7 @@ const server = http.createServer((request, response) => {
 
   if (route) {
     request.query = query;
+    request.params = { id };
 
     route.handler(request, response);
   } else {
