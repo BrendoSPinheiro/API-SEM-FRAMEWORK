@@ -25,6 +25,10 @@ class UserController {
 
     response.send(200, user);    
   }
+
+  createUser(request, response) {
+    response.send(200, { ok: true });
+  }
 }
 
 module.exports = new UserController();
