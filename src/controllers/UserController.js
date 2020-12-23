@@ -21,32 +21,23 @@ class UserController {
 
     if (!user) {
       return response.send(400, { error: 'user not found' });
-    } 
+    }
 
-    response.send(200, user);    
+    response.send(200, user);
   }
 
   createUser(request, response) {
-    let body = '';
+    const { name } = request.body;
+    const lastUserId = users[users.length - 1].id;
 
-    request.on('data', (chunk) => {
-      body += chunk;
-    });
+    const newUser = {
+      id: lastUserId + 1,
+      name,
+    };
 
-    request.on('end', () => {
-      body = JSON.parse(body);
+    users.push(newUser);
 
-      const lastUserId = users[users.length - 1].id;
-
-      const newUser = {
-        id: lastUserId + 1,
-        name: body.name,
-      };
-
-      users.push(newUser);
-
-      response.send(200, newUser);
-    });
+    response.send(200, newUser);
   }
 }
 
