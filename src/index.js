@@ -27,7 +27,7 @@ const server = http.createServer((request, response) => {
     request.query = query;
     request.params = { id };
 
-    request.send = (statusCode, body) => {
+    response.send = (statusCode, body) => {
       response.writeHead(statusCode, { 
         'Content-Type': 'text/html', 
       });

@@ -11,10 +11,7 @@ class UserController {
       return a.id > b.id ? 1 : -1;
     })
 
-    response.writeHead(200, { 
-      'Content-Type': 'application/json',
-    });
-    response.end(JSON.stringify(sortedUsers));
+    response.send(200, sortedUsers);
   }
 
   getUserById(request, response) {
@@ -23,16 +20,10 @@ class UserController {
     const user = users.find((user) => user.id === Number(id));
 
     if (!user) {
-      response.writeHead(400, { 
-        'Content-Type': 'application/json',
-      });
-      response.end(JSON.stringify({ error: 'user not found' }));
-    } else {
-      response.writeHead(200, { 
-        'Content-Type': 'application/json',
-      });
-      response.end(JSON.stringify(user));
-    }
+      return response.send(400, { error: 'user not found' });
+    } 
+
+    response.send(200, user);    
   }
 }
 
