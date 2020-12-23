@@ -50,6 +50,6 @@ const server = http.createServer((request, response) => {
   
 });
 
-server.listen(3002, () => {
+server.listen(3001, () => {
   console.log('🔥 Server started at http://localhost:3001');
 });
