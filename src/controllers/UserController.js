@@ -27,7 +27,28 @@ class UserController {
   }
 
   createUser(request, response) {
-    response.send(200, { ok: true });
+    let body = '';
+
+    request.on('data', (chunk) => {
+      body += chunk;
+    });
+
+    request.on('end', () => {
+      body = JSON.parse(body);
+
+      const lastUserId = users[users.length - 1].id;
+
+      const newUser = {
+        id: lastUserId + 1,
+        name: body.name,
+      };
+
+      users.push(newUser);
+
+      response.send(200, newUser);
+    });
+
+
   }
 }
 
