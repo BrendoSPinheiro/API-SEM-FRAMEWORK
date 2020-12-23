@@ -29,7 +29,7 @@ const server = http.createServer((request, response) => {
 
     response.send = (statusCode, body) => {
       response.writeHead(statusCode, { 
-        'Content-Type': 'text/html', 
+        'Content-Type': 'application/json', 
       });
       response.end(JSON.stringify(body));
     }

@@ -47,8 +47,6 @@ class UserController {
 
       response.send(200, newUser);
     });
-
-
   }
 }
 
