@@ -1,4 +1,4 @@
-const users = require('../mocks/users');
+let users = require('../mocks/users');
 class UserController {
   listUsers(request, response) {
     const { order } = request.query;
@@ -38,6 +38,31 @@ class UserController {
     users.push(newUser);
 
     response.send(200, newUser);
+  }
+
+  updateUser(request, response) {
+    const { name } = request.body;
+    let { id } = request.params;
+
+    id = Number(id);
+
+    const userExists = users.find((user) => user.id === id);
+
+    if(!userExists) {
+      return response.send(400, { error: 'user not found' });
+    }
+
+    users = users.map((user) => {
+      if(user.id === id) {
+        return {
+          ...user,
+          name,
+        }
+      }
+      return user;
+    })
+
+    response.send(200, { id, name });
   }
 }
 
